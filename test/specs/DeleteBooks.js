@@ -22,6 +22,16 @@ describe("DELETE Books", () => {
     console.log((await response).body);
     expect((await response).status).to.equal(204);
     //expect((await response).body).to.null;
-    console.log(response.body);
+    //console.log(response.body);
+  });
+  it("Get List of book from user to validate", async () => {
+    const response = request(base.baseURL).get(`/Account/v1/User/${userId}`)
+                                        .set("Authorization", `Bearer ${auth}`);
+    console.log("status code is = " + (await response).status);
+    console.log("Response Body = ");
+    console.log((await response).body);
+    expect((await response).status).to.equal(200);
+    expect((await response).body.books).to.empty;
+    //console.log(response.body);
   });
 });
